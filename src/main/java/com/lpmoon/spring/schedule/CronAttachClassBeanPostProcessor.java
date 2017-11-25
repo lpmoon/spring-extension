@@ -1,6 +1,5 @@
 package com.lpmoon.spring.schedule;
 
-import com.lpmoon.spring.util.ObjectUtil;
 import javassist.CannotCompileException;
 import javassist.NotFoundException;
 import org.springframework.aop.support.AopUtils;
@@ -97,8 +96,7 @@ public class CronAttachClassBeanPostProcessor implements DestructionAwareBeanPos
             else {
                 //
                 try {
-                    Class newClass = JavassistChildClassGenerator.generate(bean);
-                    return ObjectUtil.copy(bean, newClass);
+                    return ExtentScheduledTaskFactory.generate(bean);
                 } catch (NotFoundException e) {
                     e.printStackTrace();
                 } catch (CannotCompileException e) {
