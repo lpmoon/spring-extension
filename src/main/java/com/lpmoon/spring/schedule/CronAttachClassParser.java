@@ -13,13 +13,13 @@ import org.w3c.dom.Element;
  */
 public class CronAttachClassParser implements BeanDefinitionParser {
 
-    public static final String CRON_ATTACH_CLASS_PROCESSOR_BEAN_NAME = "lpmoon.spring.schedule.cronAttachClassBeanPostProcessor";
+    public static final String CRON_ATTACH_CLASS_PROCESSOR_BEAN_NAME = "com.lpmoon.spring.schedule.cronAttachClassBeanPostProcessor";
 
     @Override
     public BeanDefinition parse(Element element, ParserContext parserContext) {
         Object source = parserContext.extractSource(element);
         BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(
-                "lpmoon.spring.schedule.CronAttachClassBeanPostProcessor");
+                "com.lpmoon.spring.schedule.CronAttachClassBeanPostProcessor");
         builder.getRawBeanDefinition().setSource(source);
 
         registerPostProcessor(parserContext, builder, CRON_ATTACH_CLASS_PROCESSOR_BEAN_NAME);

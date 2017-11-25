@@ -73,7 +73,7 @@ public class CronAttachClassBeanPostProcessor implements DestructionAwareBeanPos
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        return null;
+        return bean;
     }
 
     @Override
