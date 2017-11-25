@@ -1,0 +1,2 @@
+http\://www.springframework.org/schema/vm=com.lpmoon.spring.vm.VMNamespaceHandler
+http\://www.springframework.org/schema/schedule=com.lpmoon.spring.schedule.ScheduleNamespaceHandler
