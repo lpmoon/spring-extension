@@ -1,5 +1,6 @@
 package com.lpmoon.spring.schedule;
 
+import com.lpmoon.spring.schedule.annotation.EnableExtentScheduled;
 import com.lpmoon.spring.util.ObjectUtil;
 import javassist.*;
 import javassist.bytecode.*;
@@ -26,10 +27,14 @@ public class ExtentScheduledTaskFactory {
         ClassFile childClassFile = child .getClassFile();
         ConstPool childConstPool = childClassFile.getConstPool();
 
+        boolean hasScheduledToExtent = false;
+
         CtMethod[] ctMethods = child.getMethods();
         for (CtMethod ctMethod : ctMethods) {
             Object scheduleAnnotation = ctMethod.getAnnotation(Scheduled.class);
-            if (scheduleAnnotation != null) {
+            Object enableExtentScheduledAnnotation = ctMethod.getAnnotation(EnableExtentScheduled.class);
+
+            if (scheduleAnnotation != null && enableExtentScheduledAnnotation != null) {
                 String cron = ((Scheduled) scheduleAnnotation).cron();
                 if (StringUtils.isEmpty(cron) || !cron.startsWith("$")) {
                     continue;
@@ -49,11 +54,18 @@ public class ExtentScheduledTaskFactory {
 
                 // add override method
                 child.addMethod(overrideMethod);
+
+                hasScheduledToExtent = true;
             }
         }
 
-        Class childClass = child.toClass();
-        return ObjectUtil.copy(source, childClass);
+        if (hasScheduledToExtent) {
+            Class childClass = child.toClass();
+            return ObjectUtil.copy(source, childClass);
+        }
+
+        // if has no @Scheduled to extent, we just return original object
+        return source;
     }
 
     private static void setOverrideMethodBody(CtMethod ctMethod, CtMethod overrideMethod) throws NotFoundException, CannotCompileException {

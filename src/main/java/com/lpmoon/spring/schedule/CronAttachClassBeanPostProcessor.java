@@ -2,6 +2,8 @@ package com.lpmoon.spring.schedule;
 
 import javassist.CannotCompileException;
 import javassist.NotFoundException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
@@ -35,6 +37,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CronAttachClassBeanPostProcessor implements DestructionAwareBeanPostProcessor,
         Ordered, EmbeddedValueResolverAware, BeanFactoryAware, ApplicationContextAware,
         SmartInitializingSingleton, ApplicationListener<ContextRefreshedEvent>, DisposableBean {
+
+    protected final Log logger = LogFactory.getLog(getClass());
 
     private final Set<Class<?>> nonAnnotatedClasses =
             Collections.newSetFromMap(new ConcurrentHashMap<Class<?>, Boolean>(64));
@@ -98,15 +102,15 @@ public class CronAttachClassBeanPostProcessor implements DestructionAwareBeanPos
                 try {
                     return ExtentScheduledTaskFactory.generate(bean);
                 } catch (NotFoundException e) {
-                    e.printStackTrace();
+                    logger.error("exception occur: ", e);
                 } catch (CannotCompileException e) {
-                    e.printStackTrace();
+                    logger.error("exception occur: ", e);
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                    logger.error("exception occur: ", e);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    logger.error("exception occur: ", e);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error("exception occur: ", e);
                 }
             }
         }
