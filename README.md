@@ -70,7 +70,7 @@ spring.Schedule1.cron=0/5 * *  * * ?
 spring.Schedule2.cron=0/15 * *  * * ?
 ```
 
-    properties文件中配置了定时任务的调度策略。在抽象类中定义的调度策略为${cron}，正常情况下会在properties中加载配置cron，
+properties文件中配置了定时任务的调度策略。在抽象类中定义的调度策略为${cron}，正常情况下会在properties中加载配置cron，
     由于使用了扩展功能，配置cron将不再起作用，你需要在properties根据不同的调度任务配置不同的策略，策略对应的配置为cron加上
     类名，比如上面的Schedule1，对应的配置是spring.Schedule1.cron。
 
