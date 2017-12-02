@@ -11,7 +11,7 @@ Some extension to Spring!
 
 1. 定义抽象类
 
-    ```
+```
 package spring;
 
 import com.lpmoon.spring.schedule.annotation.EnableExtentScheduled;
@@ -36,7 +36,7 @@ public abstract class AbstractSchedule {
   除了常规的@Scheduled，还需要添加@EnableExtentScheduled，启动扩展功能。
 
 2. 实现类
-    ```
+```
 package spring;
 
 import org.springframework.stereotype.Component;
@@ -49,7 +49,8 @@ public class Schedule1 extends AbstractSchedule{
     }
 }
 ```
-    ```
+
+```
 package spring;
 
 import org.springframework.stereotype.Component;
@@ -64,7 +65,7 @@ public class Schedule2 extends AbstractSchedule {
 ```
 
 3. properties
-    ```
+```
 spring.Schedule1.cron=0/5 * *  * * ?
 spring.Schedule2.cron=0/15 * *  * * ?
 ```
@@ -74,7 +75,7 @@ spring.Schedule2.cron=0/15 * *  * * ?
     类名，比如上面的Schedule1，对应的配置是spring.Schedule1.cron。
 
 4. xml
-    ```
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
