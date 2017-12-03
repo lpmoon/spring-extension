@@ -1,5 +1,29 @@
 Some extension to Spring!
 
+# ZookeeperPropertyResourceConfigurer
+
+## 用途
+
+使用zookeeper作为properties的数据源，所有使用${xx}的property都会从配置
+的zookeeper中获取。同时ZookeeperPropertyResourceConfigurer提供了缓存
+机制，减小zookeeper的压力
+
+## 使用
+
+```
+    <bean id="zookeeperConfigurer" class="com.lpmoon.spring.property.zookeeper.ZookeeperPropertyResourceConfigurer">
+        <property name="zookeeperAddress" value="127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183"/>
+        <property name="sessionTimeout" value="60000"/>
+        <property name="enableCache" value="true"/>
+    </bean>
+```
+
+参数:
+
+1. zookeeperAddress zookeeper地址
+2. sessionTimeout seesion有效期
+3. enableCache 是否启用缓存
+
 # Schedule
 
 ## 用途
