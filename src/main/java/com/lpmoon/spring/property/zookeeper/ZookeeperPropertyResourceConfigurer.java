@@ -56,6 +56,12 @@ public class ZookeeperPropertyResourceConfigurer extends PlaceholderConfigurerSu
             }
             return (resolved.equals(nullValue) ? null : resolved);
         }
+
+        // TODO
+        public void registerRefreshableProperty(String strValue, String fieldName, Object bean) {
+            ((ZookeeperPropertyPlaceholderConfigurerResolver) resolver).registerRefreshableProperty(strValue, fieldName, bean);
+        }
+
     }
 
 
@@ -103,6 +109,9 @@ public class ZookeeperPropertyResourceConfigurer extends PlaceholderConfigurerSu
             return "/" + placeholderName.replaceAll("\\.", "/");
         }
 
+        public void registerRefreshableProperty(String strValue, String fieldName, Object bean) {
+
+        }
     }
 
     public String getZookeeperAddress() {
