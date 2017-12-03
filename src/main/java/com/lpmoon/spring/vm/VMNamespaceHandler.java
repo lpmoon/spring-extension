@@ -1,5 +1,6 @@
 package com.lpmoon.spring.vm;
 
+import com.lpmoon.spring.vm.info.JavaInfoBeanDefinitionParser;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**

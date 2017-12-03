@@ -1,4 +1,4 @@
-package com.lpmoon.spring.vm;
+package com.lpmoon.spring.vm.info;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

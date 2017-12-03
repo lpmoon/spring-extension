@@ -21,7 +21,7 @@ java info.
 			]]></xsd:documentation>
             <xsd:appinfo>
                 <tool:annotation>
-                    <tool:exports type="com.lpmoon.spring.vm.JavaInfoTool"/>
+                    <tool:exports type="com.lpmoon.spring.vm.info.JavaInfoTool"/>
                 </tool:annotation>
             </xsd:appinfo>
         </xsd:annotation>
