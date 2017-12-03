@@ -92,6 +92,10 @@ public class ZookeeperPropertyResourceConfigurer extends PlaceholderConfigurerSu
                 data = this.zkClient.get(changePlaceHolderNameToZkPath(placeholderName));
             }
 
+            if (data == null) {
+                logger.error("property: " + placeholderName + "not exist!!");
+            }
+
             return data;
         }
 
